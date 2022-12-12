@@ -23,8 +23,8 @@ public class SQLREQUEST {
         map.put("country","Russia");
         map.put("city","Moscow");
         map.put("age",null);
-        System.out.println(sqlRequest + getQuerywithMap(map));
         System.out.println(map);
+        System.out.println(sqlRequest + getQuerywithMap(map));
     }
     /**
      * функция переводит строку в объект Map
@@ -49,7 +49,7 @@ public class SQLREQUEST {
      * @param Map
      * @return строка
      */
-    public static String getQuerywithMap(Map<String, String> params) {
+    private static String getQuerywithMap(Map<String, String> params) {
         StringBuilder result = new StringBuilder();
         if (params == null || params.isEmpty())
             return result.toString();
