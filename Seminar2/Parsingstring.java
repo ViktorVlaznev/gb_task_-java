@@ -11,26 +11,17 @@
 
 package Seminar2;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 
 public class Parsingstring {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("studentsgrade.txt"));
-try {
-    StringBuilder sb = new StringBuilder();
-    String line = br.readLine();
-    while (line != null) {
-        sb.append(line);
-        sb.append(System.lineSeparator());
-        line = br.readLine();
-    }
-    String everything = sb.toString();
-    System.out.println(everything);
-} finally {
-    br.close();
-}
+    public static void main(String[] args){
+        String str_progress_bar = "[{\"фамилия\":\"Иванов\",\"оценка\":\"5\",\"предмет\":\"Математика\"}," +
+         "{\"фамилия\":\"Петрова\",\"оценка\":\"4\",\"предмет\":\"Информатика\"}," +
+         "{\"фамилия\":\"Краснов\",\"оценка\":\"5\",\"предмет\":\"Физика\"}]";
+
+         String[] arr_progress_bar = str_progress_bar.split("},");
+         for (int i = 0; i < arr_progress_bar.length; i++) {
+            System.out.println(arr_progress_bar[i]);
+         }
+         System.out.println(arr_progress_bar[1]); 
     }
 }
