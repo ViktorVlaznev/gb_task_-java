@@ -11,17 +11,29 @@
 
 package Seminar2;
 
+import org.json.*;
 
 public class Parsingstring {
     public static void main(String[] args){
-        String str_progress_bar = "[{\"фамилия\":\"Иванов\",\"оценка\":\"5\",\"предмет\":\"Математика\"}," +
-         "{\"фамилия\":\"Петрова\",\"оценка\":\"4\",\"предмет\":\"Информатика\"}," +
-         "{\"фамилия\":\"Краснов\",\"оценка\":\"5\",\"предмет\":\"Физика\"}]";
-
-         String[] arr_progress_bar = str_progress_bar.split("},");
-         for (int i = 0; i < arr_progress_bar.length; i++) {
-            System.out.println(arr_progress_bar[i]);
-         }
-         System.out.println(arr_progress_bar[1]); 
+        gradesString();
+    }
+    /**
+     * функция обрабатывает json в строку и выводит её в консоль
+     * @param
+     * @return вывод заданной строки в консоль
+     */
+    private static void gradesString()
+    {
+        JSONArray studentsGrades = new JSONArray("[" +
+                "{\"фамилия\":\"Иванов\",\"оценка\":\"5\",\"предмет\":\"Математика\"}," +
+                "{\"фамилия\":\"Петрова\",\"оценка\":\"4\",\"предмет\":\"Информатика\"}," +
+                "{\"фамилия\":\"Краснов\",\"оценка\":\"5\",\"предмет\":\"Физика\"}]");
+        for (int i = 0; i < studentsGrades.length(); i++)
+        {
+            StringBuilder lastNameStudent = new StringBuilder((String) studentsGrades.getJSONObject(i).get("фамилия"));
+            StringBuilder gradeStudent = new StringBuilder((String) studentsGrades.getJSONObject(i).get("оценка"));
+            StringBuilder subjectStudent = new StringBuilder((String) studentsGrades.getJSONObject(i).get("предмет"));
+            System.out.println("Студент(ка) " + lastNameStudent + " получил(а) " + gradeStudent + " по предмету " + subjectStudent);
+        }
     }
 }
