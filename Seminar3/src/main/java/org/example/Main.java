@@ -1,19 +1,25 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
         int[] array = {6,3,12,3,1,8,4,3,7};
+        System.out.println("Первоначальный массив:");
         System.out.println(Arrays.toString(array));
 //    Реализовать алгоритм сортировки слиянием
         array = mergeSorting(array, array.length);
+        System.out.println("Отсортированный массив:");
         System.out.println(Arrays.toString(array));
 //    Пусть дан произвольный список целых чисел, удалить из него четные числа
+        System.out.println("Массив после удаления четных чисел:");
         deleteEvenNumber(array);
+//        Задан целочисленный список ArrayList. Найти минимальное, максимальное и среднее из этого списка.
+        System.out.println("Максимальный элемент массива равен " + array[array.length-1]);
+        System.out.println("Минимальный элемент массива равен " + array[0]);
+        System.out.println("Средний элемент массива равен " + array[+(array.length-1)/2]);
+        averageList(array);
     }
 //    Реализовать алгоритм сортировки слиянием
     private static int[] mergeSorting(int[] arr, int n){
@@ -68,7 +74,16 @@ public class Main {
                 iterator.remove();
             }
         }
-
         System.out.println(numbers);
+    }
+//    Задан целочисленный список ArrayList. Найти минимальное, максимальное и среднее из этого списка.
+    private static void averageList(int[] arr){
+        List<Integer> numbers = new ArrayList <Integer>();
+
+        for (int i = 0; i < arr.length; i++) {
+            numbers.add(arr[i]);
+        }
+        OptionalDouble average = numbers.stream().mapToInt(e -> e).average();
+        System.out.print("Среднее знчаение массива равно " + String.format("%.2f",average.getAsDouble()));
     }
 }
