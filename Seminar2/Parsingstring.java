@@ -24,15 +24,15 @@ public class Parsingstring {
      */
     private static void gradesString()
     {
-        JSONArray studentsGrades = new JSONArray("[" +
+        JSONArray studentsGradesJson = new JSONArray("[" +
                 "{\"фамилия\":\"Иванов\",\"оценка\":\"5\",\"предмет\":\"Математика\"}," +
                 "{\"фамилия\":\"Петрова\",\"оценка\":\"4\",\"предмет\":\"Информатика\"}," +
                 "{\"фамилия\":\"Краснов\",\"оценка\":\"5\",\"предмет\":\"Физика\"}]");
-        for (int i = 0; i < studentsGrades.length(); i++)
+        for (int i = 0; i < studentsGradesJson.length(); i++)
         {
-            StringBuilder lastNameStudent = new StringBuilder((String) studentsGrades.getJSONObject(i).get("фамилия"));
-            StringBuilder gradeStudent = new StringBuilder((String) studentsGrades.getJSONObject(i).get("оценка"));
-            StringBuilder subjectStudent = new StringBuilder((String) studentsGrades.getJSONObject(i).get("предмет"));
+            StringBuilder lastNameStudent = new StringBuilder((String) studentsGradesJson.getJSONObject(i).get("фамилия"));
+            StringBuilder gradeStudent = new StringBuilder((String) studentsGradesJson.getJSONObject(i).get("оценка"));
+            StringBuilder subjectStudent = new StringBuilder((String) studentsGradesJson.getJSONObject(i).get("предмет"));
             System.out.println("Студент(ка) " + lastNameStudent + " получил(а) " + gradeStudent + " по предмету " + subjectStudent);
         }
     }
