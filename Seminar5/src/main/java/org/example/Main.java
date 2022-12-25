@@ -24,18 +24,19 @@
 
 package org.example;
 
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+
 public class Main {
     public static HashMap<String, List<String>> phoneBook = new HashMap<>();
     public static void main(String[] args) {
         // Реализуйте структуру телефонной книги с помощью HashMap, учитывая,
         // что 1 человек может иметь несколько телефонов.
-        addInPhoneBook();
-        findInPhoneBook("Иванова");
+//        addInPhoneBook();
+//        findInPhoneBook("Иванова");
         //   Пусть дан список сотрудников:Иван Иванов
         //   Написать программу, которая найдет и выведет повторяющиеся имена с количеством повторений.
-        //   Отсортировать по убыванию популярности.
+        getEmployeesNameMap();
     }
 
     /**
@@ -54,5 +55,43 @@ public class Main {
     public static void findInPhoneBook(String surname) {
         System.out.printf("%s: %s", surname, phoneBook.get(surname));
     }
-
+    public static void getEmployeesNameMap() {
+        Map<String, Integer> nameMap = new HashMap<>();
+        String employees = "Иван Иванов " +
+                "Светлана Петрова " +
+                "Кристина Белова " +
+                "Анна Мусина " +
+                "Анна Крутова " +
+                "Иван Юрин " +
+                "Петр Лыков " +
+                "Павел Чернов " +
+                "Петр Чернышов " +
+                "Мария Федорова " +
+                "Марина Светлова " +
+                "Мария Савина " +
+                "Мария Рыкова " +
+                "Марина Лугова " +
+                "Анна Владимирова " +
+                "Иван Мечников " +
+                "Петр Петин " +
+                "Иван Ежов ";
+        String[] listOfNamesAndSurnames = employees.split(" ");
+        for (int i = 0; i < listOfNamesAndSurnames.length; i += 2) {
+            if (nameMap.containsKey(listOfNamesAndSurnames[i])) {
+                nameMap.replace(listOfNamesAndSurnames[i], nameMap.get(listOfNamesAndSurnames[i]) + 1);
+            } else {
+                nameMap.put(listOfNamesAndSurnames[i], 1);
+            }
+        }
+        System.out.println(nameMap);
+        Map<String, Integer> sortedMap = nameMap.entrySet().stream()
+                .sorted(Comparator.comparingInt(e -> -e.getValue()))
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (a, b) -> { throw new AssertionError(); },
+                        LinkedHashMap::new
+                ));
+        System.out.println(sortedMap);
+    }
 }
